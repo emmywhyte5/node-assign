@@ -16,4 +16,4 @@ router.put("/:id", authorize(["admin", "librarian"]), update1book);
 
 router.delete("/:id", authorize(["admin"]), del1book);
 
-export default router
+export default router;

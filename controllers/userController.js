@@ -1,6 +1,7 @@
 import user from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import sendEmail from "../sendEmail.js";
 
 export const forLogin = async(req,res)=>{
     try {
@@ -39,6 +40,25 @@ export const forSignup = async (req,res)=>{
         password : hashedPassword,
         role
     });
+
+    const welcomeMail =`
+   <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; background-color: #bfdbe4ff; padding: 20px; border-radius: 5px;">
+      <h1><center>Welcome to Our Platform </center> <img scr="https://res.cloudinary.com/dh8dtvvy6/image/upload/v1752755027/Blog_pictures/vdktuipzojruyrasa9hw.jpg" width="70px"/></h1>
+      <p>Hi ${fullname},</p>\n\n
+      <p>Welcome to our platform! We're excited to have you on board.\n\n</p>
+      <ol>
+        <li>Explore our features and services.</li>
+        <li>Stay updated with our latest news.</li>
+        <li>Feel free</li>
+        </ol>
+        <p>Best regards,\n\n</p>
+        <p>The Team</p>
+        </p> contact us at:< href="mailto:${process.env.EMAIL_USER}
+        
+    <div>
+    `;
+
+    await sendEmail(email, "Welcome to Our Platform",welcomeMail);
 
     res.status(200).json({message:"Sign up successful"})
 }
