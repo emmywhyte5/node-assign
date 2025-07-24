@@ -1,6 +1,7 @@
 import user from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import sendEmail from "../sendEmail.js";
 
 export const forLogin = async(req,res)=>{
     try {

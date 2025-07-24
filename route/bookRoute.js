@@ -6,11 +6,11 @@ import authorize from "../middlewares/authorize.js";
 
 const router = e.Router();
 
-router.post("/:authorid",authorize(["admin","librarian"]),createbook);
+router.post("/",authorize(["admin","librarian","Member"]),createbook);
 
 router.get("/:id", authorize(["admin", "librarian"]), get1book);
 
-router.get("/fetch", getAllbooks);
+router.get("/", getAllbooks);
 
 router.put("/:id", authorize(["admin", "librarian"]), update1book);
 

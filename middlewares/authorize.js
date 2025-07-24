@@ -11,7 +11,6 @@ const authorize = (allowedRoles) => (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded;
-        console.log("Decoded user: ", decoded);
 
         // Check if the user's role is allowed
         if (!allowedRoles.includes(decoded.role)) {

@@ -14,6 +14,11 @@ const bookSchema = Schema({
         type: Date, 
         require: true 
     },
+    author_id:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "author",
+        require: true
+    },
     status: {
         type: String,
         enum: ["Available","Borrowed"],
