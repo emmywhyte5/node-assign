@@ -3,12 +3,21 @@ import book from "../models/book.js";
 const createbook = async (req, res) => {
     try {
         let { title,isbn, author_id,published_date, status } = req.body;
+        if( !title || !isbn || !author_id || !published_date || !status) {
+         return res.status(400).json({message:"All fields are required"});
+
+        } const image={
+            url: req.file ?.path,
+            filename: req.file ?.filename
+        }
+
 
         const newBook = await book.create({
             title,
             isbn,
             published_date,
             author_id,
+            image,
             status
         });
 

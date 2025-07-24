@@ -1,7 +1,6 @@
 import user from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import sendEmail from "../sendEmail.js";
 
 export const forLogin = async(req,res)=>{
     try {
@@ -30,10 +29,18 @@ export const forLogin = async(req,res)=>{
 }
 
 export const forSignup = async (req,res)=>{
-    let {fullname,email,password, role} = req.body;
+    let {fullname ,email, password, role} = req.body;
+        if( !fullname || !email || !password) {
+         return res.status(400).json({message:"All fields are required"});
 
-    let hashedPassword = await bcrypt.hash(password, 10)
+        }
+        const existingUser = await user.findOne({email});
 
+        if(!existingUser) {
+            return res.status(404).json({message:"User not found"});
+        }
+
+        let hashedPassword = await bcrypt.hash(password, 10);
     await user.create({
         fullname,
         email,
