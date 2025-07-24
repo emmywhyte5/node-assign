@@ -35,11 +35,11 @@ export const forSignup = async (req,res)=>{
          return res.status(400).json({message:"All fields are required"});
 
         }
-        const existingUser = await user.findOne({email});
+        // const existingUser = await user.findOne({email});
 
-        if(!existingUser) {
-            return res.status(404).json({message:"User not found"});
-        }
+        // if(!existingUser) {
+        //     return res.status(404).json({message:"User not found"});
+        // }
 
         let hashedPassword = await bcrypt.hash(password, 10);
     await user.create({
