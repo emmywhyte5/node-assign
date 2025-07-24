@@ -6,15 +6,16 @@ const router = e.Router();
 
 router.post('/signup', forSignup)
 
-router.get('/', authorize(['Admin']), getAllusers)
-
-router.get('/:id', authorize(['Admin']), get1User)
-
-router.delete('/:id', authorize(['Admin']), del1User)
-
-router.put('/:id', authorize(['Admin']), update1User)
-
 router.post('/login', forLogin)
+
+router.get('/', getAllusers)
+
+router.get('/:id', get1User)
+
+router.delete('/:id', del1User)
+
+router.put('/:id', update1User)
+
 
 
 
