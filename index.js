@@ -8,6 +8,8 @@ const MONGODB_URI = process.env.MONGODB_URI
 import authorRoute from "./route/authorRoute.js";
 import userRoute from "./route/userRoute.js";
 import bookRoute from "./route/bookRoute.js";
+import cors from "cors";
+
 
 mongoose.connect(MONGODB_URI)
     .then(()=>console.log("Mongodb connected successfully")) 
@@ -15,6 +17,12 @@ mongoose.connect(MONGODB_URI)
 
 app.use(e.json());
 app.use(e.urlencoded({extended:true}));
+
+
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
 
 app.use("/author", authorRoute);
 
