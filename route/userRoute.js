@@ -4,6 +4,8 @@ import authorize from "../middlewares/authorize.js";
 
 const router = e.Router();
 
+router.post('/', forSignup)
+
 router.get('/', authorize(['Admin']), getAllusers)
 
 router.get('/:id', authorize(['Admin']), get1User)
@@ -14,7 +16,7 @@ router.put('/:id', authorize(['Admin']), update1User)
 
 router.post('/login', forLogin)
 
-router.post('/', forSignup)
+
 
 
 
