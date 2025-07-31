@@ -12,7 +12,6 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 
-
 mongoose.connect(MONGODB_URI)
     .then(()=>console.log("Mongodb connected successfully")) 
     .catch((err)=>console.log("Mongodb connection failed",err))
