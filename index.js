@@ -23,7 +23,7 @@ app.use(e.urlencoded({extended:true}));
 
 
 app.use(cors({
-    origin: ["http://localhost:5173","http://connection-react.vercel.app/"],
+    origin: ["http://localhost:5173","https://connection-react.vercel.app"],
     credentials: true,
 }));
 
