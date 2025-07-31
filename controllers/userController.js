@@ -21,7 +21,15 @@ export const forLogin = async(req,res)=>{
             { expiresIn: '3h' }
         );
 
-        res.status(200).json({message:"Login successful", token});
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false, 
+            maxAge: 3 * 60 * 60 * 1000,
+            sameSite: 'lax' 
+        });
+
+        res.status(200).json({message:"Login successful",});
+
         
     } catch (error) {
         console.log(error)

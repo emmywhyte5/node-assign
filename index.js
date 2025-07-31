@@ -9,12 +9,16 @@ import authorRoute from "./route/authorRoute.js";
 import userRoute from "./route/userRoute.js";
 import bookRoute from "./route/bookRoute.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 
 
 mongoose.connect(MONGODB_URI)
     .then(()=>console.log("Mongodb connected successfully")) 
     .catch((err)=>console.log("Mongodb connection failed",err))
 
+
+app.use(cookieParser());
 app.use(e.json());
 app.use(e.urlencoded({extended:true}));
 
